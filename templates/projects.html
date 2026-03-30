@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}My Projects | Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container fade-in-up">
+        <h2 class="display-5 fw-bold text-center mb-5 border-bottom border-primary pb-3 d-inline-block mx-auto">Selected Projects</h2>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for project in projects %}
+            <div class="col delay-{{ forloop.counter|default:1|stringformat:'s'|slice:':1' }}">
+                <div class="card h-100 bg-dark bg-opacity-50 border-0 shadow-lg glass-card rounded-4 overflow-hidden">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% else %}
+                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center">
+                        <i class="fas fa-image fa-3x text-light opacity-50"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="card-title text-primary fw-bold">{{ project.title }}</h4>
+                        <p class="card-text text-light mb-4">{{ project.description|truncatewords:20 }}</p>
+                        
+                        <div class="mb-4">
+                            <strong class="text-secondary small d-block mb-2">Technologies:</strong>
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for tech in project.get_technologies_list %}
+                                <span class="badge bg-primary bg-opacity-25 border border-primary text-light rounded-pill px-3 py-2">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto d-flex justify-content-between pt-3 border-top border-secondary opacity-75">
+                            {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline-light btn-sm custom-hover-btn w-100 me-2">
+                                <i class="fab fa-github me-1"></i> Code
+                            </a>
+                            {% endif %}
+                            
+                            {% if project.live_link %}
+                            <a href="{{ project.live_link }}" target="_blank" class="btn btn-primary btn-sm custom-btn w-100 ms-2">
+                                <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="text-muted">
+                    <i class="fas fa-folder-open fa-4x mb-3 text-secondary"></i>
+                    <h3 class="text-light">No projects added yet.</h3>
+                    <p>Check back later to see my latest work!</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

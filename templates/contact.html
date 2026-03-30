@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Me | Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container fade-in-up">
+        <h2 class="display-5 fw-bold text-center mb-5 border-bottom border-primary pb-3 d-inline-block mx-auto">Get In Touch</h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card bg-dark bg-opacity-50 border-0 shadow-lg p-md-5 p-4 rounded-4 glass-card">
+                    <div class="text-center mb-5">
+                        <i class="fas fa-envelope-open-text fa-3x text-primary mb-3"></i>
+                        <h3 class="text-light">Let's work together!</h3>
+                        <p class="text-muted">Fill out the form below or reach me directly via my social links.</p>
+                    </div>
+                    
+                    <form method="POST" action="{% url 'contact' %}" novalidate>
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.name.id_for_label }}" class="form-label text-light mb-2"><i class="fas fa-user ms-1 me-2 text-primary"></i>Your Name</label>
+                                    {{ form.name }}
+                                    {% if form.name.errors %}
+                                        <div class="invalid-feedback d-block text-danger">{{ form.name.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label text-light mb-2"><i class="fas fa-at ms-1 me-2 text-primary"></i>Email Address</label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <div class="invalid-feedback d-block text-danger">{{ form.email.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 mt-4">
+                                <div class="form-group">
+                                    <label for="{{ form.message.id_for_label }}" class="form-label text-light mb-2"><i class="fas fa-comment ms-1 me-2 text-primary"></i>Your Message</label>
+                                    {{ form.message }}
+                                    {% if form.message.errors %}
+                                        <div class="invalid-feedback d-block text-danger">{{ form.message.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 text-center mt-5">
+                                <button type="submit" class="btn btn-primary btn-lg px-5 py-3 w-100 custom-btn fs-5 fw-semibold shadow">
+                                    <i class="fas fa-paper-plane me-2"></i> Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="text-center mt-5 text-light row justify-content-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="bg-dark rounded-circle p-3 mb-2 border border-secondary shadow d-inline-block">
+                                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                            </div>
+                            <h5>Location</h5>
+                            <p class="text-muted">Tech City, CA</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="bg-dark rounded-circle p-3 mb-2 border border-secondary shadow d-inline-block">
+                                <i class="fas fa-envelope fa-2x text-primary"></i>
+                            </div>
+                            <h5>Email</h5>
+                            <p class="text-muted">o.habibi2025@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <a href="https://wa.me/905526378329" target="_blank" class="text-decoration-none">
+                                <div class="bg-dark rounded-circle p-3 mb-2 border border-secondary shadow d-inline-block custom-hover">
+                                    <i class="fab fa-whatsapp fa-2x text-primary"></i>
+                                </div>
+                            </a>
+                            <h5>WhatsApp</h5>
+                            <p class="text-muted">
+                                <a href="https://wa.me/905526378329" target="_blank" class="text-muted text-decoration-none custom-hover">+90 552 637 83 29</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

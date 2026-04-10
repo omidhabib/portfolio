@@ -15,25 +15,17 @@ The website showcases my projects, information about me, and ways to contact me.
 * Clean and responsive design
 
 ---
-
-## 📸 Website Preview
-
 ### 🏠 Home
-
-![Home](screenshots/home.png)
+![Home](screenshots/p11.png)
 
 ### 👨‍💻 About
-
-![About](screenshots/about.png)
+![About](screenshots/p12.png)
 
 ### 📂 Projects
-
-![Projects](screenshots/projects.png)
+![Projects](screenshots/p13.png)
 
 ### 📞 Contact
-
-![Contact](screenshots/contact.png)
-
+![Contact](screenshots/p14.png)
 ---
 
 ## 🛠️ Technologies Used
